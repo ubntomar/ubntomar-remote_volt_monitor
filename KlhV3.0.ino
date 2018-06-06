@@ -16,7 +16,7 @@ char              serial_device[]  = SERIALch;      //1981 serial para tarjeta p
 ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 // Default network config                                             //
-byte              myip[] = {192,168,20,240};                      //
+byte              myip[] = {192,168,20,241};                      //
 byte              mymac[] = {0x74,0x69,0x69,0x2D,0x30,0x30 };   //
 byte              gwip[] = {192,168,20,1};                      //
 byte              static_dns[] = {8,8,8,8};                      //
