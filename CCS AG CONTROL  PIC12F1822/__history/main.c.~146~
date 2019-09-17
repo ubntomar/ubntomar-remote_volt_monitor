@@ -1,0 +1,100 @@
+#include <main.h>
+BYTE state; // I2C vars
+BYTE incoming; // I2C vars
+BYTE address=0; 
+BYTE buffer[ 0x0F] ; // Address and Array of Bytes
+int16 tmr1var=0;
+
+float y=2;
+
+//————————————————————————————————————————————————————————————
+#INT_SSP 
+void ssp_interupt () 
+   { 
+   BYTE incoming, state; 
+//!   flag=1;
+   state = i2c_isr_state(); 
+   
+   if(state < 80) //Master is sending data 
+      { 
+      incoming = i2c_read(); 
+      
+      if(state == 0){ //direccion de dispositivo 0x22
+         buffer[0x00] = incoming;
+         address=0;
+         }
+      if(state == 1){ 
+         buffer[0x01] = incoming;
+//!         w=incoming;
+         y=((16.6*buffer[0x01])/100);
+         buffer[0x02]=y;
+         address=1;
+         }
+      if(state == 2){ 
+         buffer[0x00] = incoming;
+         address=2;
+         }
+      if(state == 3) {
+         buffer[0x00] = incoming;
+         address=3;
+         }
+      } 
+
+   if(state == 0x80) //Master is requesting data 
+      { 
+      i2c_write(buffer[0x02]); 
+      } 
+   } 
+//------------------------------------------------------------
+#int_TIMER1
+void  TIMER1_isr(void)//Función de interrupción por desbordamiento TMR1  
+   {
+   output_low(LED2);
+   output_low(ucpin7);
+   set_timer1(0);//carga del TMR1   
+   }
+//------------------------------------------------------------
+#byte IOCAF = getenv("SFR:IOCAF") 
+#INT_RA 
+void int_ioc() 
+   {  
+   bit_clear(IOCAF,5); //1 For RA1      
+   if(input(PIN_A5)==0)
+         {    
+         output_high(LED2);
+         output_high(ucpin7);
+         set_timer1(tmr1var);//carga del TMR1             
+         }   
+   }
+
+//------------------------------------------------------------
+void main()
+   {
+   port_A_pullups(0x20);
+   buffer[0x00]=0x04;
+//!   setup_wdt(WDT_8S);      //~8,1 s reset
+   output_high(ucpin7);
+   output_high(LED2);
+   delay_ms(DELAY3);
+   output_low(LED2);
+   delay_ms(DELAY3);
+   output_high(LED2);
+   delay_ms(DELAY3);
+   output_low(LED2);
+   delay_ms(DELAY3);
+   setup_timer_1(T1_INTERNAL|T1_DIV_BY_8);      //65,5 ms overflow   
+   
+   enable_interrupts(INT_TIMER1);
+   
+   setup_adc_ports(NO_ANALOGS); 
+   enable_interrupts(INT_RA5_H2L);
+   enable_interrupts(INT_SSP);
+   enable_interrupts(GLOBAL); 
+   tmr1var=65536-(1000*y);
+   
+   while(TRUE)
+         {
+               
+         }
+
+      }

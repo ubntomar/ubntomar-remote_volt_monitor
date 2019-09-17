@@ -1,0 +1,19 @@
+#include <12F1822.h>
+#device ADC=10
+
+#FUSES WDT                      //Watch Dog Timer
+
+#use delay(internal=32000000,restart_wdt)
+#define ucpin7   PIN_A0
+#define ucpin6   PIN_A1
+#define ucpin5   PIN_A2
+#define ucpin4   PIN_A3
+#define ucpin3   PIN_A4
+#define ucpin2   PIN_A5
+
+#use i2c(Slave,Fast,sda=ucpin5,scl=ucpin6,restart_wdt,address=0x22)
+
+#define LED PIN_A5
+#define DELAY 1000
+#define DELAY2 500
+

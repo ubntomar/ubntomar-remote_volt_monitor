@@ -1,0 +1,57 @@
+
+ROM used:   1081/2048 (53%)
+            1081/2048 (53%) including unused fragments
+
+            1.2 Average locations per line
+            22.1 Average locations per statement
+
+RAM used:   38/128 (30%) at main() level
+            70/128 (55%) worst case
+
+Stack used: 2 worst case (1 in main + 1 for interrupts)
+Stack size: 16
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  102    49 100  main.c
+   31     0   0  main.h
+  755     0   0  ..\..\..\..\..\Program Files (x86)\PICC\Devices\12F1822.h
+----- -----
+  888    49 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     25   2    1             @delay_ms1
+ Inline         1             @I2C_WRITE_1
+0     82   8    2   470  4.3  ssp_interupt
+0     12   1    0    37  1.1  TIMER1_isr
+0     24   2    1   121  2.6  int_ioc
+0    192  18    4   568  4.7  MAIN
+0     30   3    2             @ITOF
+0    117  11   13             @MULFF
+0    203  19   14             @DIVFF
+0    323  30   16             @ADDFF
+0     32   3    4             @SFTOI
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               4
+    Statements              49
+    Comments                161
+    Volume (V)              1580
+    Difficulty (D)          11.9
+    Effort to implement (E) 18823
+    Time to implement (T)   17 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   7
+    Maintainability (MI)    79
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     3  0  
+00003-00003     0  1  
+00004-00029    38  0  
+0002A-007FF  1040  966  
+
+
+
