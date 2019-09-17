@@ -1,0 +1,31 @@
+
+Solder Mask:BLUE
+
+AG Control v2.0.6 is my second request to PCB Way  board development
+
+i attach a file called previus_manufacturing_error.jpg   .i received it and not contain pcb silkscreen!.
+Please not sendme manufactured board withou pcb silkscreen because soldering process is very hard and i include gerber excellon files here.
+
+my email: omar_alberto_h@yahoo.es    ag.ingenieria.wist@gmail.com
+
+
+AG Control v2.0.6 is of 4 layer.
+Bill Of Materials for MONITOR Y CONTROL WEB
+Design Title
+MONITOR Y CONTROL WEB
+Author
+OMAR HERNANDEZ AG INGENEIRIA
+Document Number
+Revision
+v2.0.6
+Design Created
+lunes, 23 de enero de 2017
+Design Last Modified
+domingo, 02 de julio de 2017
+-----------------------------
+Total Parts In Design
+86 
+-----------------------------
+
+
+
